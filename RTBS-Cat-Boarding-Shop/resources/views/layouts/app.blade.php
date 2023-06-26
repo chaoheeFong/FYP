@@ -49,13 +49,13 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" >
                                 
                                 
                                 <li class="collapse navbar-collapse" id="navbarResponsive">
                                      <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                                          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#portfolio">Cat Boarding</a></li>
                                          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                                          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -69,11 +69,17 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                     <a class="dropdown-item" href="{{ route('profile') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Profile') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
