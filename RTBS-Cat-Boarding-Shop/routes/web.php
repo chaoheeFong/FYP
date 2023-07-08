@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
-
+use App\Http\Controllers\PhotoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'index'])->name('profile');
 
 Route::get('/bookings', [BookingController::class, 'index']);
+
+Route::get('/upload', [PhotoController::class, 'create']);
+Route::post('/upload', [PhotoController::class, 'store']);
