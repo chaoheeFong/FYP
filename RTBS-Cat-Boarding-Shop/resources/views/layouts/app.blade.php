@@ -55,12 +55,10 @@
                                 
                                 <li class="collapse navbar-collapse" id="navbarResponsive">
                                      <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#portfolio">Cat Boarding</a></li>
-                                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                                         
+                                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/booking">Book Now!</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/subscription">Subscription</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/feedback">FeedBack</a></li>
                                     </ul>
                                     
                                 </li>
@@ -71,12 +69,6 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="#services">Services</a>
-                                    <a class="dropdown-item" href="#portfolio">Cat Boarding</a>
-                                    <a class="dropdown-item" href="#about">About</a>
-                                    <a class="dropdown-item" href="#team">Team</a>
-                                    <a class="dropdown-item" href="#contact">Contact</a>
-                                    
                                      <a class="dropdown-item" href="{{ route('profile') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

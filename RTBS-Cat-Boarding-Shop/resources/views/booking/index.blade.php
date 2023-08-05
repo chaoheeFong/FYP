@@ -20,10 +20,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="sass/app.scss" rel="stylesheet" />
 </head>
-<body id="page-top">
+<body id="booking">
 
-    <div>
-
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+    <h2>Booking Details</h2>
+    <!-- Show booking details here -->
+    <a href="{{ route('booking.form') }}" class="btn btn-success">Booking Now!!</a>
+     </div>
     </div>
 
 </body>
