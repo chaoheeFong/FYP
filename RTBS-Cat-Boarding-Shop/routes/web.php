@@ -7,7 +7,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,3 +62,4 @@ Route::get('/feedback-management', [AdminController::class, 'feedbackManagement'
 Route::get('/cat-status-notification', [AdminController::class, 'catStatusNotification'])->name('cat.status.notification');
 
 
+Route::get('/profile', [UserController::class, 'index'])->name('user');

@@ -2,11 +2,24 @@
 
 @section('content')
 <!DOCTYPE html>
-<html>
-    
-    <title>Feedback Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Kitty camp</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/kittycamp.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/scss" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/scss" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="sass/app.scss" rel="stylesheet" />
+    </head>
+
 
 <body>
 
@@ -17,7 +30,7 @@
             </div>
         @endif
 
-        <h2>Feedback Form</h2>
+        <h2>Feedback Here!</h2>
         <form method="post" action="{{ route('feedback.submit') }}">
             @csrf
 
@@ -50,10 +63,6 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label for="star" class="form-label">Star:</label>
-                <input type="number" class="form-control" name="star" min="1" max="5" required>
-            </div>
 
             <div class="mb-3">
             <label for="star" class="form-label">Star:</label>
@@ -69,13 +78,10 @@
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        
     </div>
-
-
+<script src="../js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
-
-
 </html>
-
 @endsection

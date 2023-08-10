@@ -18,6 +18,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/scss" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="sass/app.scss" rel="stylesheet" />
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body id="page-top">
         <!-- Masthead-->
@@ -63,6 +64,40 @@
                 </div>
             </div>
         </section>
+        <!-- Reviews-->
+        <section class="page-section" id="review">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Reviews</h2>
+                    <h3 class="section-subheading text-muted">Kitty Camp review from our Customer.</h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-home fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Pet Boarding</h4>
+                        <p class="text-muted">Pet boarding is a service that provides temporary accommodation and care for pets when their owners are unable to take care of them. </p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-paw fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Pet Grooming</h4>
+                        <p class="text-muted">Pet grooming involves the care and maintenance of a pet's physical appearance and hygiene. It includes a range of services such as bathing, brushing, trimming or styling the fur, nail trimming, ear cleaning, and dental care. </p>
+                    </div>
+                    <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-stethoscope fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Vet Medic</h4>
+                        <p class="text-muted">A pet veterinarian, often referred to as a vet or a veterinary doctor, is a medical professional who specializes in providing healthcare services for animals, particularly pets. </p>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- About-->
         <section class="page-section" id="about">

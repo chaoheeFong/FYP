@@ -26,11 +26,6 @@
 <div class="container">
 
     <h2>Booking</h2>
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
     <form action="{{ route('booking.submit') }}" method="POST">
         @csrf
         <div class="form-group">
@@ -83,7 +78,9 @@
         </div>
     </form>
 </div>
-
+<script src="../js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>
 

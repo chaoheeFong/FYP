@@ -93,3 +93,20 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll(".star-rating i");
+        const starInput = document.getElementById("star");
+
+        stars.forEach(star => {
+            star.addEventListener("click", function () {
+                const value = this.dataset.value;
+                starInput.value = value;
+
+                stars.forEach((s, index) => {
+                    s.classList.toggle("fa-star", index < value);
+                    s.classList.toggle("fa-star-o", index >= value);
+                });
+            });
+        });
+    });
