@@ -64,11 +64,11 @@
                 </div>
             </div>
         </section>
-        <!-- Reviews-->
+        <!-- Review-->
         <section class="page-section" id="review">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Reviews</h2>
+                    <h2 class="section-heading text-uppercase">Customer Review</h2>
                     <h3 class="section-subheading text-muted">Kitty Camp review from our Customer.</h3>
                 </div>
                 <div class="row text-center">

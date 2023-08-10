@@ -25,33 +25,33 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'index'])->name('profile');
 
-Route::get('/bookings', [BookingController::class, 'index']);
+Route::get('/bookings', [BookingController::class, 'index'])->middleware('auth');
 
 Route::get('/upload', [PhotoController::class, 'create']);
 Route::post('/upload', [PhotoController::class, 'store']);
 
 //Booking Section
-Route::get('/booking', [BookingController::class, 'index']);
-Route::get('/booking/form', [BookingController::class, 'showForm'])->name('booking.form');
-Route::get('/booking/submit', [BookingController::class, 'submitForm'])->name('booking.submit');
+Route::get('/booking', [BookingController::class, 'index'])->middleware('auth');
+Route::get('/booking/form', [BookingController::class, 'showForm'])->name('booking.form')->middleware('auth');
+Route::get('/booking/submit', [BookingController::class, 'submitForm'])->name('booking.submit')->middleware('auth');
 // Show the edit form
-Route::get('/booking/edit/{id}', [BookingController::class, 'editForm'])->name('booking.edit');
+Route::get('/booking/edit/{id}', [BookingController::class, 'editForm'])->name('booking.edit')->middleware('auth');
 
 // Handle the update form submission
-Route::put('/booking/update/{id}', [BookingController::class, 'updateForm'])->name('booking.update');
+Route::put('/booking/update/{id}', [BookingController::class, 'updateForm'])->name('booking.update')->middleware('auth');
 
 
 
 //Subscription Section
-Route::get('/subscription', [SubscriptionController::class, 'index']);
+Route::get('/subscription', [SubscriptionController::class, 'index'])->middleware('auth');
 
 //Feedback Section
-Route::get('/feedback', [FeedbackController::class, 'index']);
-Route::post('/feedback', [FeedbackController::class, 'submitForm'])->name('feedback.submit');
+Route::get('/feedback', [FeedbackController::class, 'index'])->middleware('auth');
+Route::post('/feedback', [FeedbackController::class, 'submitForm'])->name('feedback.submit')->middleware('auth');
 
 
 //Admin
@@ -61,5 +61,5 @@ Route::get('/booking-management', [AdminController::class, 'bookingManagement'])
 Route::get('/feedback-management', [AdminController::class, 'feedbackManagement'])->name('feedback.management');
 Route::get('/cat-status-notification', [AdminController::class, 'catStatusNotification'])->name('cat.status.notification');
 
-
-Route::get('/profile', [UserController::class, 'index'])->name('user');
+//profile
+Route::get('/profile', [UserController::class, 'index'])->name('user')->middleware('auth');

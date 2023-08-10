@@ -22,7 +22,6 @@
 </head>
 <body id="booking">
 
-
 <div class="container">
 
     <h2>Booking</h2>
