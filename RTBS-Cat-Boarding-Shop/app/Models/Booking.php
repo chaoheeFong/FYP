@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    use HasFactory;
+
+    protected $fillable = [
+    'location',
+    'service_type',
+    'number_of_cats',
+    'breed',
+    'size',
+    'booking_date',
+    'booking_time',
+    'nights',
+    'comment',
+];
 }

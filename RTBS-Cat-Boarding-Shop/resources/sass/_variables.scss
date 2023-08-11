@@ -11407,5 +11407,11 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-weight: var(--bs-body-font-weight);
 }
 
-
-
+    .star-rating i {
+        font-size: 24px;
+        color: gold;
+    }
+    
+.form-group {
+            margin-bottom: 20px; /* Adjust the value as needed */
+        }

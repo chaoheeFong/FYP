@@ -27,23 +27,24 @@
     <div class="subscription-container">
     <div class="subscription-card">
       <h2 class="subscription-card-title">Free</h2>
-      <div class="subscription-card-price">$0/month</div>
-      <p class="subscription-card-description">Access to free features</p>
-      <a href="#" class="subscription-card-button">Subscribe Now</a>
+      <div class="subscription-card-price">$0</div>
+      <p class="subscription-card-description">Booking Feature include pet boarding, grooming and vet medic.</p>
+      <a href="/booking" class="subscription-card-button">Book now!</a>
+      
     </div>
     
     <div class="subscription-card">
-      <h2 class="subscription-card-title">Basic</h2>
+      <h2 class="subscription-card-title">Basic Plan</h2>
       <div class="subscription-card-price">$9.99/month</div>
-      <p class="subscription-card-description">Access to basic features</p>
-      <a href="#" class="subscription-card-button">Subscribe Now</a>
+      <p class="subscription-card-description">5% discount for service in each branch</p>
+      <a href="#" class="subscription-card-button">Subscribe Now!</a>
     </div>
     
     <div class="subscription-card">
-      <h2 class="subscription-card-title">Premium</h2>
+      <h2 class="subscription-card-title">Premium Plan</h2>
       <div class="subscription-card-price">$19.99/month</div>
-      <p class="subscription-card-description">Access to premium features</p>
-      <a href="#" class="subscription-card-button">Subscribe Now</a>
+      <p class="subscription-card-description">15% discount for service in each branch</p>
+      <a href="#" class="subscription-card-button">Subscribe Now!</a>
     </div>
   </div>
 <script src="../js/app.js"></script>

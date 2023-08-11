@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('number_of_cats');
             $table->string('breed')->nullable();
             $table->string('size')->nullable();
-            $table->date('date');
-            $table->time('time');
+            $table->date('booking_date');
+            $table->time('booking_time');
             $table->integer('nights');
             $table->text('comment')->nullable();
             $table->timestamps();

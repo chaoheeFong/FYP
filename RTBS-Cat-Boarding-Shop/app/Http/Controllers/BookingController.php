@@ -3,52 +3,80 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Booking;
 
 class BookingController extends Controller
 {
-    public function index ()
+    public function __construct()
     {
-        return view('booking.index');
+        $this->middleware('auth');
     }
 
-    public function showForm()
+    public function index ()
+    {
+
+        $bookings = Booking::all(); // Fetch all bookings from the database
+        return view('booking.index', compact('bookings'));
+
+    }
+
+    public function showBookingForm()
     {
         return view('booking.createbooking');
     }
 
-    public function createBooking(Request $request)
-    {
-        $validatedData = $request->validate([
-            'location' => 'required',
-            'service_type' => 'required',
-            'number_of_cats' => 'required|integer',
-            'date' => 'required|date',
-            'time' => 'required',
-            'nights' => 'required|integer',
+    public function submitBookingForm(Request $request)
+        {
+         $data = $request->validate([
+             'location' => 'required',
+             'service_type' => 'required',
+             'number_of_cats' => 'required|integer',
+             'breed' => 'required',
+             'size' => 'required',
+             'booking_date' => 'required|date',
+             'booking_time' => 'required',
+             'nights' => 'required|integer',
+             'comment' => 'nullable',
         ]);
 
-        Booking::create($validatedData);
+        Booking::create($data);
 
-        // You can add a success message here if you want
-
-        return redirect()->route('booking.index')->with('success', 'Booking submitted successfully.');
+        return redirect()->route('booking.form')->with('success', 'Booking submitted successfully!');
     }
 
-    public function updateForm(Request $request, $id)
-    {
-        $booking = Booking::findOrFail($id);
+    public function edit($id)
+{
+    $booking = Booking::findOrFail($id); // Find the booking by ID
 
-        $validatedData = $request->validate([
-            'location' => 'required',
-            'service_type' => 'required',
-            'number_of_cats' => 'required|integer',
-            'date' => 'required|date',
-            'time' => 'required',
-            'nights' => 'required|integer',
-        ]);
+    return view('booking.edit', compact('booking'));
+}
 
-        $booking->update($validatedData);
+public function update(Request $request, $id)
+{
+    $booking = Booking::findOrFail($id);
 
-        return redirect()->route('booking.form')->with('success', 'Booking updated successfully.');
-    }
+    $data = $request->validate([
+        'location' => 'required|in:Sungai Long,Jalan Ampang,Batu Kawan,Mahkota Cheras',
+        'service_type' => 'required',
+        'number_of_cats' => 'required|integer',
+        'breed' => 'required',
+        'size' => 'required',
+        'booking_date' => 'required|date',
+        'booking_time' => 'required',
+        'nights' => 'required|integer',
+        'comment' => 'nullable',
+    ]);
+
+    $booking->update($data);
+
+    return redirect()->route('booking.index')->with('success', 'Booking updated successfully!');
+}
+
+public function destroy($id)
+{
+    $booking = Booking::findOrFail($id);
+    $booking->delete();
+
+    return redirect()->route('booking.index')->with('success', 'Booking deleted successfully!');
+}
 }

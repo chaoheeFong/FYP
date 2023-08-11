@@ -23,62 +23,63 @@
 
 <body>
 
-    <div class="container mt-5">
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+<div class="container">
+    <h1>Feedback Now!</h1>
 
-        <h2>Feedback Here!</h2>
-        <form method="post" action="{{ route('feedback.submit') }}">
-            @csrf
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-            <div class="mb-3">
-                <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control" name="name" required>
-            </div>
+    <form method="post" action="{{ route('feedback.submit') }}">
+        @csrf
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" name="email" required>
-            </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
 
-            <div class="mb-3">
-                <label for="address" class="form-label">Address:</label>
-                <input type="text" class="form-control" name="address" required>
-            </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" class="form-control" required>
+        </div>
 
-            <div class="mb-3">
-                <label for="comment" class="form-label">Comment:</label>
-                <textarea class="form-control" name="comment" rows="4" required></textarea>
-            </div>
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" class="form-control" rows="4" required></textarea>
+        </div>
 
-            <div class="mb-3">
-                <label for="service" class="form-label">Service:</label>
-                <select class="form-control" name="service" required>
-                    <option value="cat-boarding">Cat Boarding</option>
-                    <option value="cat-grooming">Cat Grooming</option>
-                    <option value="vet-medic">Vet Medic</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label for="service">Service:</label>
+            <select id="service" name="service" class="form-control" required>
+                <option value="cat-boarding">Cat Boarding</option>
+                <option value="cat-grooming">Cat Grooming</option>
+                <option value="vet-medic">Vet Medic</option>
+            </select>
+        </div>
 
+        <div class="form-group">
+            <label for="star">Star:</label>
+            <select id="star" name="star" class="form-control" required>
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+            </select>
+        </div>
 
-            <div class="mb-3">
-            <label for="star" class="form-label">Star:</label>
-                <div class="star-rating">
-                    <i class="far fa-star" data-value="1"></i>
-                    <i class="far fa-star" data-value="2"></i>
-                    <i class="far fa-star" data-value="3"></i>
-                    <i class="far fa-star" data-value="4"></i>
-                    <i class="far fa-star" data-value="5"></i>
-                </div>
-                <input type="hidden" name="star" id="star" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </div>
+        
+    </form>
+</div>
 <script src="../js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>

@@ -35,14 +35,12 @@ Route::get('/upload', [PhotoController::class, 'create']);
 Route::post('/upload', [PhotoController::class, 'store']);
 
 //Booking Section
-Route::get('/booking', [BookingController::class, 'index'])->middleware('auth');
-Route::get('/booking/form', [BookingController::class, 'showForm'])->name('booking.form')->middleware('auth');
-Route::get('/booking/submit', [BookingController::class, 'submitForm'])->name('booking.submit')->middleware('auth');
-// Show the edit form
-Route::get('/booking/edit/{id}', [BookingController::class, 'editForm'])->name('booking.edit')->middleware('auth');
-
-// Handle the update form submission
-Route::put('/booking/update/{id}', [BookingController::class, 'updateForm'])->name('booking.update')->middleware('auth');
+Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
+Route::get('/createBooking', [BookingController::class, 'showBookingForm'])->name('booking.form');
+Route::post('/createBooking', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
+Route::get('/booking/{id}/edit', [BookingController::class, 'edit'])->name('booking.edit');
+Route::put('/booking/{id}', [BookingController::class, 'update'])->name('booking.update');
+Route::delete('/booking/{id}', [BookingController::class, 'destroy'])->name('booking.destroy');
 
 
 
@@ -50,8 +48,8 @@ Route::put('/booking/update/{id}', [BookingController::class, 'updateForm'])->na
 Route::get('/subscription', [SubscriptionController::class, 'index'])->middleware('auth');
 
 //Feedback Section
-Route::get('/feedback', [FeedbackController::class, 'index'])->middleware('auth');
-Route::post('/feedback', [FeedbackController::class, 'submitForm'])->name('feedback.submit')->middleware('auth');
+Route::get('/feedback', [FeedbackController::class, 'showForm'])->name('feedback.form');
+Route::post('/feedback', [FeedbackController::class, 'submitForm'])->name('feedback.submit');
 
 
 //Admin

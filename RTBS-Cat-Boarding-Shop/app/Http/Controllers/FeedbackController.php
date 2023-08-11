@@ -7,7 +7,12 @@ use App\Models\Feedback;
 
 class FeedbackController extends Controller
 {
-    public function index()
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function showForm()
     {
         return view('feedback');
     }
@@ -23,8 +28,15 @@ class FeedbackController extends Controller
             'star' => 'required|integer|between:1,5',
         ]);
 
-        Feedback::create($request->all());
+        $feedback = new Feedback();
+        $feedback->name = $request->input('name');
+        $feedback->email = $request->input('email');
+        $feedback->address = $request->input('address');
+        $feedback->comment = $request->input('comment');
+        $feedback->service = $request->input('service');
+        $feedback->star = $request->input('star');
+        $feedback->save();
 
-        return redirect()->route('feedback')->with('success', 'Thank you for your feedback!');
+        return redirect()->back()->with('success', 'Feedback submitted successfully!');
     }
 }
