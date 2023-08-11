@@ -1,6 +1,26 @@
 @extends('layouts.app') <!-- If you have a layout template -->
 
 @section('content')
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Kitty camp</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/kittycamp.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/scss" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/scss" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="sass/app.scss" rel="stylesheet" />
+    </head>
+
+
 <body>
     <div class="container">
         <h2>Booking Form</h2>
@@ -11,7 +31,7 @@
             </div>
         @endif
 
-        <form action="{{ route('booking.submit') }}" method="post">
+        <form action="{{ route('booking.form') }}" method="post">
             @csrf
 
             <div class="form-group">
@@ -68,8 +88,12 @@
                 <textarea name="comment" id="comment" class="form-control" rows="4"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Confirm Booking</button>
         </form>
     </div>
+<script src="../js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
+</html>
 @endsection

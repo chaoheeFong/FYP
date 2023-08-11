@@ -8,6 +8,7 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,8 +42,8 @@ Route::post('/createBooking', [BookingController::class, 'submitBookingForm'])->
 Route::get('/booking/{id}/edit', [BookingController::class, 'edit'])->name('booking.edit');
 Route::put('/booking/{id}', [BookingController::class, 'update'])->name('booking.update');
 Route::delete('/booking/{id}', [BookingController::class, 'destroy'])->name('booking.destroy');
-
-
+Route::get('/bookingConfirmation', [BookingController::class, 'confirmation'])->name('booking.confirmation');
+Route::post('/booking/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
 
 //Subscription Section
 Route::get('/subscription', [SubscriptionController::class, 'index'])->middleware('auth');
@@ -51,13 +52,23 @@ Route::get('/subscription', [SubscriptionController::class, 'index'])->middlewar
 Route::get('/feedback', [FeedbackController::class, 'showForm'])->name('feedback.form');
 Route::post('/feedback', [FeedbackController::class, 'submitForm'])->name('feedback.submit');
 
-
 //Admin
+
+Route::group(['middleware' => 'auth:admin'], function () {
+
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/user-management', [AdminController::class, 'userManagement'])->name('user.management');
 Route::get('/booking-management', [AdminController::class, 'bookingManagement'])->name('booking.management');
 Route::get('/feedback-management', [AdminController::class, 'feedbackManagement'])->name('feedback.management');
 Route::get('/cat-status-notification', [AdminController::class, 'catStatusNotification'])->name('cat.status.notification');
+
+});
+
+Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
+Route::get('/register/admin', [RegisterController::class,'showAdminRegisterForm']);
+Route::post('/login/admin', [LoginController::class,'adminLogin']);
+Route::post('/register/admin', [RegisterController::class,'createAdmin']);
+
 
 //profile
 Route::get('/profile', [UserController::class, 'index'])->name('user')->middleware('auth');

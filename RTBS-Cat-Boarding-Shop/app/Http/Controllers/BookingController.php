@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\User;
 
 class BookingController extends Controller
 {
@@ -14,10 +15,8 @@ class BookingController extends Controller
 
     public function index ()
     {
-
         $bookings = Booking::all(); // Fetch all bookings from the database
         return view('booking.index', compact('bookings'));
-
     }
 
     public function showBookingForm()
@@ -38,6 +37,7 @@ class BookingController extends Controller
              'nights' => 'required|integer',
              'comment' => 'nullable',
         ]);
+
 
         Booking::create($data);
 
@@ -79,4 +79,13 @@ public function destroy($id)
 
     return redirect()->route('booking.index')->with('success', 'Booking deleted successfully!');
 }
+
+    public function confirm(Request $request)
+    {
+        $bookingData = $request->except('_token');
+
+        Booking::create($bookingData);
+
+        return redirect()->route('booking.index')->with('success', 'Booking confirmed and saved successfully!');
+    }
 }
