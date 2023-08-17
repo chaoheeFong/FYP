@@ -11415,3 +11415,18 @@ section#contact form#contactForm :-ms-input-placeholder {
 .form-group {
             margin-bottom: 20px; /* Adjust the value as needed */
         }
+
+  .rating {
+    text-align: center;
+  }
+  
+  .rating > span {
+    display: inline-block;
+    width: 1.1em;
+    color: gold; /* Set the color to gold (yellow) */
+    font-size: 24px; /* Adjust the font size as needed */
+  }
+
+
+
+  

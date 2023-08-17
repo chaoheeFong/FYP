@@ -65,36 +65,46 @@
             </div>
         </section>
         <!-- Review-->
-        <section class="page-section" id="review">
+        
+        <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Customer Review</h2>
-                    <h3 class="section-subheading text-muted">Kitty Camp review from our Customer.</h3>
+                    <h3 class="section-subheading text-muted">Customer review with the service of Kitty Camp</h3>
                 </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-home fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Pet Boarding</h4>
-                        <p class="text-muted">Pet boarding is a service that provides temporary accommodation and care for pets when their owners are unable to take care of them. </p>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Parveen Anand</h4>
+                            <p class="text-muted">Royal Customer</p>
+                            <h6>I highly recommend this cat boarding system to anyone in need of a trustworthy and enjoyable place for their cats while they're away!</h6>
+                            <div class="rating">
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-paw fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Pet Grooming</h4>
-                        <p class="text-muted">Pet grooming involves the care and maintenance of a pet's physical appearance and hygiene. It includes a range of services such as bathing, brushing, trimming or styling the fur, nail trimming, ear cleaning, and dental care. </p>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                            <h4>Diana Petersen</h4>
+                            <p class="text-muted">Royal Customer</p>
+                            <h6>I recently used the cat boarding services and I must say, I'm thoroughly impressed! The facility is spacious, clean, and well-maintained.</h6>
+                            <div class="rating">
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-stethoscope fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Vet Medic</h4>
-                        <p class="text-muted">A pet veterinarian, often referred to as a vet or a veterinary doctor, is a medical professional who specializes in providing healthcare services for animals, particularly pets. </p>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                            <h4>Larry Parker</h4>
+                            <p class="text-muted">Royal Customer</p>
+                            <h6>The staff clearly loves cats and treats them as their own. My feline friend was provided with a cozy individual suite with plenty of toys and a comfortable bed.</h6>
+                            <div class="rating">
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

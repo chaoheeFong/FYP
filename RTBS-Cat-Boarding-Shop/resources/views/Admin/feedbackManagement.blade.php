@@ -1,6 +1,7 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
 @section('content')
-    @include('_navbar')
-    <!-- Rest of the content for each view goes here -->
+    <div>
+        <h1>Feedback Management</h1>
+    <div>
 @endsection

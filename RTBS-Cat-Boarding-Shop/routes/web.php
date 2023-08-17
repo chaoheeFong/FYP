@@ -54,15 +54,29 @@ Route::post('/feedback', [FeedbackController::class, 'submitForm'])->name('feedb
 
 //Admin
 
-Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-Route::get('/user-management', [AdminController::class, 'userManagement'])->name('user.management');
-Route::get('/booking-management', [AdminController::class, 'bookingManagement'])->name('booking.management');
-Route::get('/feedback-management', [AdminController::class, 'feedbackManagement'])->name('feedback.management');
-Route::get('/cat-status-notification', [AdminController::class, 'catStatusNotification'])->name('cat.status.notification');
+    //Admin Dashboard
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+    //User Management
+    Route::get('/userManagement', [AdminController::class, 'userManagement'])->name('admin.userManagement');
+    Route::get('/users/create', [AdminController::class, 'createUser'])->name('admin.users.create');
+    Route::post('/users', [AdminController::class, 'storeUser'])->name('admin.users.store');
+    Route::get('/users/{id}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit');
+    Route::put('/users/{id}', [AdminController::class, 'updateUser'])->name('admin.users.update');
+    Route::delete('/users/{id}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
+
+    //Booking Management
+    Route::get('/bookingManagement', [AdminController::class, 'bookingManagement'])->name('admin.bookingManagement');
+
+    //Feedback Management
+    Route::get('/feedbackManagement', [AdminController::class, 'feedbackManagement'])->name('admin.feedbackManagement');
+
+    //Cat Status Notification 
+    Route::get('/catStatusNotification', [AdminController::class, 'catStatusNotification'])->name('admin.catStatusNotification');
 });
+
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
 Route::get('/register/admin', [RegisterController::class,'showAdminRegisterForm']);
