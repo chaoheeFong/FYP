@@ -25,6 +25,25 @@
             @enderror
         </div>
 
+        <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" id="contact" name="contact" class="form-control @error('contact') is-invalid @enderror" value="{{ old('contact', isset($user) ? $user->contact : '') }}" required>
+            @error('contact')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required>
+                <option value="subscriber" {{ old('role', isset($user) && $user->role === 'subscriber' ? 'selected' : '') }}>Subscriber</option>
+                <option value="user" {{ old('role', isset($user) && $user->role === 'user' ? 'selected' : '') }}>User</option>
+            </select>
+            @error('role')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
         @if(!isset($user))
             <div class="form-group">
                 <label for="password">Password</label>

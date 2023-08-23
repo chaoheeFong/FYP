@@ -77,7 +77,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/catStatusNotification', [AdminController::class, 'catStatusNotification'])->name('admin.catStatusNotification');
 });
 
-
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
 Route::get('/register/admin', [RegisterController::class,'showAdminRegisterForm']);
 Route::post('/login/admin', [LoginController::class,'adminLogin']);
@@ -86,3 +85,4 @@ Route::post('/register/admin', [RegisterController::class,'createAdmin']);
 
 //profile
 Route::get('/profile', [UserController::class, 'index'])->name('user')->middleware('auth');
+Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload-profile-picture');

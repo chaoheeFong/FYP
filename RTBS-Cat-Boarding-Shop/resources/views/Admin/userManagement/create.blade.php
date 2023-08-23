@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -75,10 +76,27 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
+
+                        <div class="col-md-6">
+                            <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required>
+                                <option value="user" {{ old('role') === 'user' ? 'selected' : '' }}>User</option>
+                                <option value="subscriber" {{ old('role') === 'subscriber' ? 'selected' : '' }}>Subscriber</option>
+                            </select>
+                    
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Add User') }}
                                 </button>
                             </div>
                         </div>
@@ -88,4 +106,5 @@
         </div>
     </div>
 </div>
+
 @endsection

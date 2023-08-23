@@ -1,12 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
+
+<div class="container">
 <div class="d-flex justify-content-between align-items-center">
     <h1>User Management</h1>
 
     <a href="{{ route('admin.users.create') }}" class="btn btn-primary mb-2">Add User</a>
 </div>
-
     <table class="table">
         <thead>
             <tr>
@@ -38,4 +39,5 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 @endsection

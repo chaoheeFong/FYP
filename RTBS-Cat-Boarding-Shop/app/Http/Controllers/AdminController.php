@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Booking;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
-        public function dashboard()
+//    public function __construct()
+//{
+//    $this->middleware('admin');
+//}
+    public function dashboard()
     {
         return view('admin.dashboard');
     }
@@ -53,27 +60,43 @@ class AdminController extends Controller
     }
 
     public function updateUser(Request $request, $id)
-    {
-         $user = User::findOrFail($id);
+{
+    $user = User::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => [
-                'required', 'email', Rule::unique('users')->ignore($user->id),
-            ],
-        ]);
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => [
+            'required', 'email', Rule::unique('users')->ignore($user->id),
+        ],
+        'contact' => [
+            'required', Rule::unique('users')->ignore($user->id),
+        ],
+        'role' => [
+            'required',
+            Rule::in(['subscriber', 'user']),
+        ],
+    ]);
 
-        $user->update($validatedData);
+    $user->update([
+        'name' => $validatedData['name'],
+        'email' => $validatedData['email'],
+        'contact' => $validatedData['contact'],
+        'role' => $validatedData['role'],
+    ]);
 
-        return redirect()->route('admin.users')->with('success', 'User updated successfully');
-    }
+    // Assuming you have a separate method for updating roles,
+    // you can call it here, passing the $user and the role value from $validatedData['role']
+
+    return redirect()->route('admin.userManagement')->with('success', 'User updated successfully');
+}
 
 
 
     //Booking Management
     public function bookingManagement()
     {
-        return view('admin.bookingManagement');
+        $bookings = Booking::all(); // Fetch all bookings from the database
+        return view('admin.bookingManagement', compact('bookings'));
     }
 
     //Feedback Management
