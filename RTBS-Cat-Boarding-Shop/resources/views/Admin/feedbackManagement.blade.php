@@ -7,6 +7,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Address</th>
@@ -18,6 +19,7 @@
         <tbody>
             @foreach($feedbackManagement as $feedback)
                 <tr>
+                    <td>{{ $feedback->id }}</td>
                     <td>{{ $feedback->name }}</td>
                     <td>{{ $feedback->email }}</td>
                     <td>{{ $feedback->address }}</td>

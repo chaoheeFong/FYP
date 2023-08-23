@@ -19,8 +19,9 @@ class AdminController extends Controller
     public function dashboard()
     {
         $feedbackCount = Feedback::count();
-
-        return view('admin.dashboard', compact('feedbackCount'));
+        $bookingCount = Booking::count();
+        $userCount = User::count();
+        return view('admin.dashboard', compact('bookingCount', 'feedbackCount', 'userCount'));
     }
 
     //User Management

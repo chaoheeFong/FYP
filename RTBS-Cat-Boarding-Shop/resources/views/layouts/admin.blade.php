@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Add your own CSS style -->
@@ -32,7 +32,7 @@
 
         .sidebar {
             width: 250px;
-            background-color: #343a40;
+            background-color: #007bff; /* Blue color */
             color: white;
             padding-top: 20px;
         }
@@ -42,7 +42,7 @@
         }
 
         .nav-link {
-            color: #adb5bd;
+            color: #fff; /* White text */
             text-decoration: none;
             padding: 10px 20px;
             display: block;
@@ -50,12 +50,22 @@
         }
 
         .nav-link:hover {
-            background-color: #495057;
+            background-color: #0056b3; /* Darker blue on hover */
         }
 
         .content {
             flex: 1;
             padding: 20px;
+        }
+        .navbar-brand {
+             display: flex;
+             align-items: center;
+             justify-content: center;
+            }
+
+        .navbar-logo {
+            border-radius: 50%; /* Make the image round */
+            overflow: hidden; /* Hide overflow to ensure round shape */
         }
     </style>
 </head>
@@ -64,8 +74,14 @@
     <div class="admin-panel">
         <nav class="sidebar">
             <ul class="nav">
+                <div class="container mt-6">
+                    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
+                        <div class="navbar-logo">
+                    <img src="{{ asset('assets/img/kittycamp.png') }}" alt="Kitty Camp" width="80" height="80">
+                        </div>
+                    </a>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.userManagement') }}">User Management</a>
@@ -84,6 +100,7 @@
         <main class="content">
             @yield('content')
         </main>
+    </div>
     </div>
 </body>
 </html>

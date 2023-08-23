@@ -1,23 +1,29 @@
-@extends('layouts.admin')
+@extends('layouts.admin') <!-- Assuming 'layouts.admin' is the name of your main layout -->
 
 @section('content')
-
-<head>
-    <!-- Include necessary CSS, such as Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-4">
-        <h1 class="mb-4">Admin Dashboard</h1>
-
+    <h1>Dashboard</h1>
+    <p>Welcome to the admin dashboard of the Cat Boarding App!</p>
+    
+    <div class="info-box">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Total Feedback Entries</h4>
+                <h4 class="card-title">Total Booking </h4>
+                <p class="card-text">{{ $bookingCount }}</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Total Feedback </h4>
                 <p class="card-text">{{ $feedbackCount }}</p>
             </div>
         </div>
         
-        <!-- Other dashboard content here -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Total User </h4>
+                <p class="card-text">{{ $userCount }}</p>
+            </div>
+        </div>
     </div>
-</body>     
 @endsection
