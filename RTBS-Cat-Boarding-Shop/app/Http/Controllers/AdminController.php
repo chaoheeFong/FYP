@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use App\Models\Feedback;
 
 class AdminController extends Controller
 {
@@ -17,7 +18,9 @@ class AdminController extends Controller
 //}
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $feedbackCount = Feedback::count();
+
+        return view('admin.dashboard', compact('feedbackCount'));
     }
 
     //User Management
@@ -100,10 +103,13 @@ class AdminController extends Controller
     }
 
     //Feedback Management
-    public function feedbackManagement()
+       public function feedbackManagement()
     {
-        return view('admin.feedbackManagement');
+        $feedbackManagement = Feedback::all();
+
+        return view('admin.feedbackManagement', compact('feedbackManagement'));
     }
+
 
     //Cat Status Notification
     public function catStatusNotification()

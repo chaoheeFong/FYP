@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-    <h2>Booking Management</h2>
+    <h1>Booking Management</h1>
     <!-- Show booking details here -->
     <a href="{{ route('booking.form') }}" class="btn btn-success">Add Booking</a>
 
