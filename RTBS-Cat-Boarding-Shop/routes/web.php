@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     //Feedback Management
     Route::get('/feedbackManagement', [AdminController::class, 'feedbackManagement'])->name('admin.feedbackManagement');
-
+    Route::delete('/feedback/{id}', [AdminController::class, 'delete'])->name('feedback.delete');
     //Cat Status Notification 
     Route::get('/catStatusNotification', [AdminController::class, 'catStatusNotification'])->name('admin.catStatusNotification');
 });

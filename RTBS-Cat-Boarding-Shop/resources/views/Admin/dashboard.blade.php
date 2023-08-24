@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Dashboard</h1>
-    <p>Welcome to the admin dashboard of the Cat Boarding App!</p>
+    <p>Welcome to the admin dashboard of the Cat Boarding App! {{ Auth::user()->name }}</p>
     
     <div class="info-box">
         <div class="card">

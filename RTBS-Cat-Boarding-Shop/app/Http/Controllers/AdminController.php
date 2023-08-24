@@ -111,6 +111,16 @@ class AdminController extends Controller
         return view('admin.feedbackManagement', compact('feedbackManagement'));
     }
 
+    public function delete($id)
+{
+    $feedback = Feedback::find($id);
+    if ($feedback) {
+        $feedback->delete();
+    }
+    
+    return redirect()->back(); // Redirect back to the feedback management page
+}
+
 
     //Cat Status Notification
     public function catStatusNotification()
