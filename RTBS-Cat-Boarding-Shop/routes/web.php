@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     //User Management
     Route::get('/userManagement', [AdminController::class, 'userManagement'])->name('admin.userManagement');
     Route::get('/users/create', [AdminController::class, 'createUser'])->name('admin.users.create');
-    Route::post('/users', [AdminController::class, 'storeUser'])->name('admin.users.store');
+    Route::post('/users', [AdminController::class, 'storeUser'])->name('admin.userManagement.users.store');
     Route::get('/users/{id}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit');
     Route::put('/users/{id}', [AdminController::class, 'updateUser'])->name('admin.users.update');
     Route::delete('/users/{id}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');

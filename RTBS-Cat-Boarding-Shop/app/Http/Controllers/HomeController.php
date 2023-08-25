@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Feedback;
 class HomeController extends Controller
 {
     /**
@@ -23,7 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $feedbacks = Feedback::select('name', 'comment', 'star')
+            ->limit(3)
+            ->get();
+
+        return view('home', compact('feedbacks'));
     }
 
 }

@@ -39,15 +39,21 @@ class AdminController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
+            'email' => 'required|string|email|unique:users|max:255',
+            'password' => 'required|string|min:8',
+            'contact' => 'required|string|max:20',
+            'role' => 'required|in:user,subscriber', // Validate role input
         ]);
 
-        $validatedData['password'] = bcrypt($validatedData['password']);
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'contact' => $validatedData['contact'],
+            'role' => $validatedData['role'],
+        ]);;
 
-        User::create($validatedData);
-
-        return redirect()->route('admin.users')->with('success', 'User created successfully');
+        return redirect()->route('admin.userManagement')->with('success', 'User created successfully');
     }
 
     public function destroyUser($id)
