@@ -22,6 +22,7 @@ return new class extends Migration
             $table->time('booking_time');
             $table->integer('nights');
             $table->text('comment')->nullable();
+            $table->string('status')->default('Coming to Centre');
             $table->timestamps();
         });
     }

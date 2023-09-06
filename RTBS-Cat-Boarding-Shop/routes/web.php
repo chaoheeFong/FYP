@@ -9,6 +9,9 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\MailController;
+use App\Mail\HelloMail;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,6 +78,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::delete('/feedback/{id}', [AdminController::class, 'delete'])->name('feedback.delete');
     //Cat Status Notification 
     Route::get('/catStatusNotification', [AdminController::class, 'catStatusNotification'])->name('admin.catStatusNotification');
+    Route::get('/booking/{id}/edit', [AdminController::class, 'editCatStatus'])->name('admin.booking.editStatus');
+    Route::put('/booking/{id}', [AdminController::class, 'updateCatStatus'])->name('admin.catStatusManagement.updateCatStatus');
+
 });
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
@@ -86,3 +92,7 @@ Route::post('/register/admin', [RegisterController::class,'createAdmin']);
 //profile
 Route::get('/profile', [UserController::class, 'index'])->name('user')->middleware('auth');
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload-profile-picture');
+Route::get('/send',[MailController::class,'index']);
+
+
+Route::get('/mail', [AdminController::class, 'catStatusMail']);

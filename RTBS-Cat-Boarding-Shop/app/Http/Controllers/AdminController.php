@@ -9,6 +9,8 @@ use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use App\Models\Feedback;
+use App\Mail\HelloMail;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -131,6 +133,42 @@ class AdminController extends Controller
     //Cat Status Notification
     public function catStatusNotification()
     {
-        return view('admin.catStatusNotification');
+        $bookings = Booking::all(); // Fetch all bookings from the database
+        return view('admin.catStatusNotification', compact('bookings'));
     }
+
+    public function catStatusMail(){
+        Mail::to('chaohee00@gmail.com')
+        ->send(new HelloMail());
+        return redirect('/');
+    }
+
+    public function editCatStatus($id)
+    {
+        $booking = Booking::findOrFail($id); // Find the booking by ID
+    
+        return view('admin.catStatusManagement.edit', compact('booking'));
+    }
+
+    public function updateCatStatus(Request $request, $id)
+{
+    $booking = Booking::findOrFail($id);
+
+    $data = $request->validate([
+        'location' => 'required|in:Sungai Long,Jalan Ampang,Batu Kawan,Mahkota Cheras',
+        'service_type' => 'required',
+        'number_of_cats' => 'required|integer',
+        'breed' => 'required',
+        'size' => 'required',
+        'booking_date' => 'required|date',
+        'booking_time' => 'required',
+        'nights' => 'required|integer',
+        'comment' => 'nullable',
+        'status' => 'required',
+    ]);
+
+    $booking->update($data);
+
+    return redirect()->route('admin.catStatusNotification')->with('success', 'Booking updated successfully!');
+}
 }

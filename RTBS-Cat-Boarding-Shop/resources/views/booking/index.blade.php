@@ -45,6 +45,8 @@
                         <th>Time</th>
                         <th>Nights</th>
                         <th>Comment</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +61,7 @@
                             <td>{{ $booking->booking_time }}</td>
                             <td>{{ $booking->nights }}</td>
                             <td>{{ $booking->comment }}</td>
+                            <td>{{ $booking->status }}</td>
                             <td>
                             <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-sm btn-primary">Edit</a>
                             <form action="{{ route('booking.destroy', $booking->id) }}" method="post" class="d-inline">

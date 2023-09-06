@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\User;
+use GoogleMaps\Client as GoogleMapsClient;
 
 class BookingController extends Controller
 {
@@ -36,6 +37,7 @@ class BookingController extends Controller
              'booking_time' => 'required',
              'nights' => 'required|integer',
              'comment' => 'nullable',
+             'status' => 'Coming to Centre',
         ]);
 
 

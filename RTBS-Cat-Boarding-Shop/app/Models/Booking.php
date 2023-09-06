@@ -19,7 +19,11 @@ class Booking extends Model
     'booking_time',
     'nights',
     'comment',
+    'status',
     ];
 
+    protected $attributes = [
+        'status' => 'Coming to Centre',
+    ];
 
 }
