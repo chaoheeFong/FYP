@@ -20,6 +20,16 @@
         <link href="sass/app.scss" rel="stylesheet" />
     </head>
 
+    <style>.star {
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.selected {
+    color: #FFD700;
+}</style>
+
 
 <body>
 
@@ -63,16 +73,8 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="star">Star:</label>
-            <select id="star" name="star" class="form-control" required>
-                <option value="1">1 star</option>
-                <option value="2">2 stars</option>
-                <option value="3">3 stars</option>
-                <option value="4">4 stars</option>
-                <option value="5">5 stars</option>
-            </select>
-        </div>
+        <div id="star-container" class="form-group"></div>
+<input type="hidden" id="star" name="star" required>
 
         <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit Feedback</button>
@@ -80,6 +82,34 @@
         
     </form>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const starContainer = document.getElementById('star-container');
+        const starInput = document.getElementById('star');
+        
+        for (let i = 1; i <= 5; i++) {
+            const star = document.createElement('span');
+            star.innerHTML = '&#9733;';
+            star.classList.add('star');
+            star.addEventListener('click', function() {
+                starInput.value = i;
+                updateStars(i);
+            });
+            starContainer.appendChild(star);
+        }
+
+        function updateStars(selected) {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(function(star, index) {
+                if (index < selected) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
+    });
+</script>
 <script src="../js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\User;
 use GoogleMaps\Client as GoogleMapsClient;
+use Illuminate\Support\Facades\Auth;
+
 
 class BookingController extends Controller
 {
@@ -26,25 +28,31 @@ class BookingController extends Controller
     }
 
     public function submitBookingForm(Request $request)
-        {
-         $data = $request->validate([
-             'location' => 'required',
-             'service_type' => 'required',
-             'number_of_cats' => 'required|integer',
-             'breed' => 'required',
-             'size' => 'required',
-             'booking_date' => 'required|date',
-             'booking_time' => 'required',
-             'nights' => 'required|integer',
-             'comment' => 'nullable',
-             'status' => 'Coming to Centre',
-        ]);
+{
+    $data = $request->validate([
+        'location' => 'required',
+        'service_type' => 'required',
+        'number_of_cats' => 'required|integer',
+        'breed' => 'required',
+        'size' => 'required',
+        'booking_date' => 'required|date',
+        'booking_time' => 'required',
+        'nights' => 'required|integer',
+        'comment' => 'nullable',
+    ]);
+
+    // Assuming the user is logged in, you can get their ID like this
+    $user_id = Auth::user();
+
+    // Add user_id to the data array
+    $data['user_id'] = $user_id;
+
+    Booking::create($data);
+
+    return redirect()->route('booking.form')->with('success', 'Booking submitted successfully!');
+}
 
 
-        Booking::create($data);
-
-        return redirect()->route('booking.form')->with('success', 'Booking submitted successfully!');
-    }
 
     public function edit($id)
 {

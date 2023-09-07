@@ -10,6 +10,10 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use App\Models\Feedback;
 use App\Mail\HelloMail;
+use App\Mail\bath;
+use App\Mail\ComingToCentre;
+use App\Mail\feed;
+use App\Mail\received;
 use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
@@ -140,7 +144,36 @@ class AdminController extends Controller
     public function catStatusMail(){
         Mail::to('chaohee00@gmail.com')
         ->send(new HelloMail());
-        return redirect('/');
+        return redirect('/admin/catStatusNotification')->with('success', 'Coming to Centre action performed!');
+    }
+
+    public function comingToCentre(){
+        Mail::to('chaohee00@gmail.com')
+        ->send(new ComingToCentre());
+        return redirect('/admin/catStatusNotification')->with('success', 'Coming to Centre action performed!');
+    }
+
+    public function feed(){
+        Mail::to('chaohee00@gmail.com')
+        ->send(new feed());
+        return redirect('/admin/catStatusNotification')->with('success', 'Fed action performed!');
+    
+    }
+
+    public function bath(){
+        Mail::to('chaohee00@gmail.com')
+        ->send(new bath());
+        return redirect('/admin/catStatusNotification')->with('success', 'Bath action performed!');
+    }
+
+        public function received(){
+        Mail::to('chaohee00@gmail.com')
+        ->send(new received());
+        return redirect('/admin/catStatusNotification')->with('success', 'Received action performed!');
+    }
+
+    public function catStatus(){
+        return view('admin.catStatusManagement.sendStatus');
     }
 
     public function editCatStatus($id)

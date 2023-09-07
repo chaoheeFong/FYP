@@ -30,7 +30,7 @@ class FeedbackController extends Controller
         $feedback->address = $request->input('address');
         $feedback->comment = $request->input('comment');
         $feedback->service = $request->input('service');
-        $feedback->star = $request->input('star');
+        $feedback->rating = $request->input('star');
         $feedback->save();
 
         return redirect()->back()->with('success', 'Feedback submitted successfully!');

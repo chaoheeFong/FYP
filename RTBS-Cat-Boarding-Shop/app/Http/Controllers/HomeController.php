@@ -23,11 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $feedbacks = Feedback::select('name', 'comment', 'star')
-            ->limit(3)
-            ->get();
+        $feedbacks = Feedback::paginate(3);
 
-        return view('home', compact('feedbacks'));
+        return view('home', ['feedbacks' => $feedbacks]);
     }
 
 }

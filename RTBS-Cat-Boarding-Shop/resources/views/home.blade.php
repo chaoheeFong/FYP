@@ -64,52 +64,37 @@
                 </div>
             </div>
         </section>
-        <!-- Review-->
-        
-        <section class="page-section bg-light" id="team">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Customer Review</h2>
-                    <h3 class="section-subheading text-muted">Customer review with the service of Kitty Camp</h3>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Parveen Anand</h4>
-                            <p class="text-muted">Royal Customer</p>
-                            <h6>I highly recommend this cat boarding system to anyone in need of a trustworthy and enjoyable place for their cats while they're away!</h6>
-                            <div class="rating">
-                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
-                            <h4>Diana Petersen</h4>
-                            <p class="text-muted">Royal Customer</p>
-                            <h6>I recently used the cat boarding services and I must say, I'm thoroughly impressed! The facility is spacious, clean, and well-maintained.</h6>
-                            <div class="rating">
-                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
-                            <h4>Larry Parker</h4>
-                            <p class="text-muted">Royal Customer</p>
-                            <h6>The staff clearly loves cats and treats them as their own. My feline friend was provided with a cozy individual suite with plenty of toys and a comfortable bed.</h6>
-                            <div class="rating">
-                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                            </div>
-                        </div>
+
+        <!-- review -->
+<section class="page-section bg-light" id="team">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Customer Review</h2>
+            <h3 class="section-subheading text-muted">Customer review with the service of Kitty Camp</h3>
+        </div>
+        <div class="row">
+            @foreach($feedbacks as $feedback)
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="{{ asset('assets/img/team/3.jpg') }}" alt="Reviewer Image" />                        <h4>{{ $feedback->name }}</h4>
+                        <p class="text-muted">Royal Customer</p>
+                        <h6>{{ $feedback->comment }}</h6>
+                        <div class="rating">
+    @for($i = 1; $i <= 5; $i++)
+        @if($i <= $feedback->rating)
+            <span>&#9733;</span>
+        @else
+            <span>&#9734;</span>
+        @endif
+    @endfor
+</div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- test review -->
+            @endforeach
+        </div>
+    </div>
+</section>
+
 
 
         <!-- About-->

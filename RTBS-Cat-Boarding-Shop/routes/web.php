@@ -11,6 +11,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\MailController;
 use App\Mail\HelloMail;
+use App\Mail\bath;
+use App\Mail\ComingToCentre;
+use App\Mail\feed;
+use App\Mail\received;
+
 use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +85,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/catStatusNotification', [AdminController::class, 'catStatusNotification'])->name('admin.catStatusNotification');
     Route::get('/booking/{id}/edit', [AdminController::class, 'editCatStatus'])->name('admin.booking.editStatus');
     Route::put('/booking/{id}', [AdminController::class, 'updateCatStatus'])->name('admin.catStatusManagement.updateCatStatus');
+    Route::get('/sendCatStatus',[AdminController::class, 'CatStatus'])->name('admin.catStatusManagement.CatStatus');
+    Route::post('/sendCatStatus/{status}',[AdminController::class, 'CatStatus'])->name('admin.catStatusManagement.sendCatStatus'); 
 
 });
 
@@ -96,3 +103,11 @@ Route::get('/send',[MailController::class,'index']);
 
 
 Route::get('/mail', [AdminController::class, 'catStatusMail']);
+Route::get('/feed', [AdminController::class, 'feed'])->name('feed');
+Route::get('/bath', [AdminController::class, 'bath'])->name('bath');
+Route::get('/received', [AdminController::class, 'received'])->name('received');
+Route::get('/coming_to_centre', [AdminController::class, 'comingToCentre'])->name('ComingToCentre');;
+
+
+
+

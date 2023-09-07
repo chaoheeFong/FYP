@@ -11428,5 +11428,58 @@ section#contact form#contactForm :-ms-input-placeholder {
   }
 
 
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+}
+
+.pagination li {
+    margin: 0 5px;
+    display: inline;
+}
+
+.pagination li a {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination .page-link {
+    border: none;
+    border-radius: 5px;
+    color: #333;
+    background-color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: #f8f9fa;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #aaa;
+}
+
+.pagination .active a {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 
   

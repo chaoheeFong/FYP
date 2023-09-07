@@ -45,12 +45,17 @@
                             <a href="{{ route('admin.booking.editStatus', $booking->id) }}" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                            <a href="{{ route('admin.booking.editStatus', $booking->id) }}" class="btn btn-success">Send</a>
+                            <a href="{{ route('admin.catStatusManagement.CatStatus') }}" class="btn btn-success">Send</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+                    @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         @else
             <p>No bookings available.</p>
         @endif

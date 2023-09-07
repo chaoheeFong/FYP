@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('address');
             $table->text('comment');
             $table->enum('service', ['cat-boarding', 'cat-grooming', 'vet-medic']);
-            $table->unsignedTinyInteger('star')->nullable();
+            $table->unsignedTinyInteger('rating')->default(1);
             $table->timestamps();
         });
     }
