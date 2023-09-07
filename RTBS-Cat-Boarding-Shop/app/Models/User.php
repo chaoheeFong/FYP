@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Booking;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -57,7 +57,12 @@ class User extends Authenticatable
         }
     }
 
-    public function bookings() {
+    public function bookings(): HasMany {
         return $this->hasMany(Booking::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // Assuming there is a 'role' column in your users table
     }
 }

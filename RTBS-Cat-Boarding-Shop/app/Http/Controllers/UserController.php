@@ -5,10 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use app\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class UserController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('auth');
+
+    $this->middleware(function ($request, $next) {
+        if (Gate::allows('isSubscriber')) {
+            return $next($request);
+        }
+
+        if (Gate::allows('isUser')) {
+            return $next($request);
+        }
+
+        Auth::logout(); // Logout the user
+        return redirect()->route('home')->with('error', 'You do not have permission to access this page.'); // Redirect to home with error message
+    });
+
+    
+
+
+}
+
     public function index() {
         return view('profile');
     }
@@ -29,6 +54,15 @@ class UserController extends Controller
     }
 
     return redirect()->back()->with('success', 'Profile picture uploaded successfully.');
+}
+
+public function changeRole()
+{
+    $user = auth()->user(); // Get the authenticated user
+    $user->role = 'subscriber'; // Change the role
+    $user->save(); // Save the user
+
+    return redirect()->route('home'); // Redirect to home after role change
 }
 
 

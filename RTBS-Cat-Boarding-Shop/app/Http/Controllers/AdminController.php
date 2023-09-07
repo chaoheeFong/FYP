@@ -15,13 +15,22 @@ use App\Mail\ComingToCentre;
 use App\Mail\feed;
 use App\Mail\received;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-//    public function __construct()
-//{
-//    $this->middleware('admin');
-//}
+    public function __construct()
+{
+    $this->middleware(function ($request, $next) {
+        if (auth()->check() && auth()->user()->role == 'admin') {
+            return $next($request);
+        }
+
+        Auth::logout(); // Logout the user
+        return redirect()->route('home')->with('error', 'You do not have permission to access this page.'); // Redirect to home with error message
+    });
+}
     public function dashboard()
     {
         $feedbackCount = Feedback::count();
@@ -31,11 +40,13 @@ class AdminController extends Controller
     }
 
     //User Management
-    public function userManagement()
-    {
-        $users = User::all();
-        return view('admin.userManagement', compact('users'));
-    }
+public function userManagement()
+{
+    // Fetch only users with role 'user' or 'subscriber'
+    $users = User::whereIn('role', ['user', 'subscriber'])->get();
+
+    return view('admin.userManagement', compact('users'));
+}
     public function createUser()
     {
         return view('admin.userManagement.create');

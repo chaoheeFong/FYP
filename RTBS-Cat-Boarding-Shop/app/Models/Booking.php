@@ -26,7 +26,7 @@ class Booking extends Model
         'status' => 'Coming to Centre',
     ];
 
-    public function user() {
+    public function user(): BelongsTo{
         return $this->belongsTo(User::class);
     }
 

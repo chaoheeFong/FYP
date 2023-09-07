@@ -4,9 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Feedback;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('auth');
+
+    $this->middleware(function ($request, $next) {
+        if (Gate::allows('isSubscriber')) {
+            return $next($request);
+        }
+
+        if (Gate::allows('isUser')) {
+            return $next($request);
+        }
+
+        Auth::logout(); // Logout the user
+        return redirect()->route('home')->with('error', 'You do not have permission to access this page.'); // Redirect to home with error message
+    });
+}
 
     public function showForm()
     {

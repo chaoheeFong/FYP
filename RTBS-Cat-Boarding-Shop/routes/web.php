@@ -28,9 +28,7 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Auth::routes();
 
@@ -46,7 +44,7 @@ Route::post('/upload', [PhotoController::class, 'store']);
 //Booking Section
 Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
 Route::get('/createBooking', [BookingController::class, 'showBookingForm'])->name('booking.form');
-Route::post('/createBooking', [BookingController::class, 'submitBookingForm'])->name('booking.submit');
+Route::post('/createBooking', [BookingController::class, 'submitBookingForm'])->name('booking.submit')->middleware('auth');;
 Route::get('/booking/{id}/edit', [BookingController::class, 'edit'])->name('booking.edit');
 Route::put('/booking/{id}', [BookingController::class, 'update'])->name('booking.update');
 Route::delete('/booking/{id}', [BookingController::class, 'destroy'])->name('booking.destroy');
@@ -63,6 +61,8 @@ Route::post('/feedback', [FeedbackController::class, 'submitForm'])->name('feedb
 //Admin
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+
+    
 
     //Admin Dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
