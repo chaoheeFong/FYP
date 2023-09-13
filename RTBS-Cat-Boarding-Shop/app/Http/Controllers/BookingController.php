@@ -43,10 +43,11 @@ public function index()
     return view('booking.index', compact('bookings'));
 }
 
-    public function showBookingForm()
-    {
-        return view('booking.createbooking');
-    }
+public function showBookingForm()
+{
+    $userLocation = Auth::user()->location;
+    return view('booking.createbooking', compact('userLocation'));
+}
 
     public function submitBookingForm(Request $request)
 {

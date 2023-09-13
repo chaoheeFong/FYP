@@ -22,38 +22,31 @@
                     </ul>
                     
                     <div class="tab-content" id="paymentTabsContent">
-                        <!-- Credit Card Tab Content -->
-                        <div class="tab-pane fade show active" id="creditCard" role="tabpanel" aria-labelledby="creditCardTab">
-                            <div class="mt-4 mx-4">
-                                <div class="text-center">
-                                    <h5>Credit card</h5>
-                                </div>
-                                <div class="form mt-3">
-                                    <div class="inputbox">
-                                        <input type="text" name="name" class="form-control" required="required" placeholder="Enter your name">
-                                    </div>
-                                    <div class="inputbox">
-                                        <br/>
-                                    <input type="text" name="name" class="form-control" required="required" placeholder="Enter your card number">
-                                    <br/>
-                                        <i class="fa fa-eye"></i>
-                                    </div>
-                                    <div class="d-flex flex-row">
-                                        <div class="inputbox">
-                                            <input type="text" name="name" min="1" max="999" class="form-control" required="required" placeholder="Expration date">
-                                        </div>
-                                        <div class="inputbox">
-                                            <input type="text" name="name" min="1" max="999" class="form-control" required="required" placeholder="CVV">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="px-5 pay">
-</br>
-                                        <button id="finishPayButton" class="btn btn-primary btn-block">Finsh and Pay</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form mt-3">
+    <form action="{{ route('process.payment') }}" method="POST">
+        @csrf <!-- Add the CSRF token -->
+        <div class="inputbox">
+            <input type="text" name="name" class="form-control"  placeholder="Enter your name">
+        </div>
+        <div class="inputbox">
+            <br/>
+            <input type="text" name="name" class="form-control" required="required" placeholder="Enter your card number">
+            <br/>
+            <i class="fa fa-eye"></i>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="inputbox">
+                <input type="text" name="name" min="1" max="999" class="form-control" required="required" placeholder="Expiration date">
+            </div>
+            <div class="inputbox">
+                <input type="text" name="name" min="1" max="999" class="form-control" required="required" placeholder="CVV">
+            </div>
+        </div>
+        <div class="px-5 pay">
+            <button type="submit" class="btn btn-primary btn-block">Finish and Pay</button>
+        </div>
+    </form>
+</div>
                         
                         <!-- PayPal Tab Content -->
                         <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypalTab">
@@ -73,16 +66,5 @@
         </div>
     </div>
 </div>
-<script>
-    document.getElementById('finishPayButton').addEventListener('click', function() {
-    // Display an alert when the button is clicked
-    alert('You are now a subscriber!');
 
-    // Send a POST request to change the user's role
-    $.post('{{ route("changeRole") }}', function() {
-        window.location.href = '{{ route("home") }}';
-    });
-});
-
-</script>
 @endsection

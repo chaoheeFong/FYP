@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+
+use Illuminate\Http\Request;
+
 class RegisterController extends Controller
 {
     /*
@@ -41,37 +44,53 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'contact' => ['required', 'string', 'max:15'],
+	public function showRegisterForm() {
+		return view('auth.register', ['role' => 'user']);
+	}
+    public function showAdminRegisterForm() {
+		return view('auth.register', ['role' => 'admin']);
+	}
 
-        ]);
-    }
+	public function register(Request $request) {
+		$request->validate([
+			'name' => 'required|unique:users|max:255',
+			'email' => 'required|unique:users|email|max:255',
+			'password' => 'required|min:8|confirmed',
+			'contact' => 'required|min:8',
+            'location' => 'required|max:255',
+		]); // if invalid, return back to the original page and show error message
+		User::create([
+			'name' => $request->name,
+			'email' => $request->email,
+			'password' => Hash::make($request->password),
+			'contact' => $request->contact,
+            'location' => $request->location,
+		]);
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-             'name' => $data['name'],
-             'email' => $data['email'],
-             'password' => Hash::make($data['password']),
-             'contact' => $data['contact'], 
+		return redirect('/login');
+	}
+
+    public function registerAdmin(Request $request) {
+        $request->validate([
+            'name' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users|email|max:255',
+            'password' => 'required|min:8|confirmed',
+            'contact' => 'required|min:8',
+            'location' => 'required|max:255',
+            'role' => 'admin', // This is incorrect
         ]);
+    
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'contact' => $request->contact,
+            'location' => $request->locaton,
+            'role' => 'admin', // This is correct
+        ]);
+    
+        return redirect('/login/admin');
     }
+    
     
 }

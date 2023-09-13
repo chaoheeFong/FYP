@@ -34,15 +34,25 @@
         <form action="{{ route('booking.form') }}" method="post">
             @csrf
 
+            
+<!-- Disabled input field for location -->
+<div class="form-group">
+        <label for="defaultLocation">Your Location</label>
+        <input type="text" name="defaultLocation" id="defaultLocation" class="form-control" value="{{ $userLocation }}" disabled>
+    </div>
+
             <div class="form-group">
-            <label for="location">Location</label>
-            <select name="location" id="location" class="form-control" required>
-                <option value="Sungai Long">Sungai Long</option>
-                <option value="Jalan Ampang">Jalan Ampang</option>
-                <option value="Batu Kawan">Batu Kawan</option>
-                <option value="Mahkota Cheras">Mahkota Cheras</option>
-            </select>
-            </div>
+        <label for="location">Suggested Branch Location</label>
+        <select name="location" id="location" class="form-control" required>
+        <option value="Sungai Long" {{ $userLocation == 'Sungai Long' ? 'selected' : '' }}>Sungai Long</option>
+        <option value="Jalan Ampang" {{ $userLocation == 'Jalan Ampang' ? 'selected' : '' }}>Jalan Ampang</option>
+        <option value="Batu Kawan" {{ $userLocation == 'Batu Kawan' ? 'selected' : '' }}>Batu Kawan</option>
+        <option value="Mahkota Cheras" {{ $userLocation == 'Mahkota Cheras' ? 'selected' : '' }}>Mahkota Cheras</option>
+        </select>
+    </div>
+
+
+
 
             <div class="form-group">
                 <label for="service_type">Service Type</label>
@@ -91,6 +101,12 @@
             <button type="submit" class="btn btn-primary">Confirm Booking</button>
         </form>
     </div>
+
+    <script>
+    document.getElementById('changeLocation').addEventListener('click', function() {
+        document.getElementById('location').removeAttribute('disabled');
+    });
+</script>
 <script src="../js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>

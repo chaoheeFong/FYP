@@ -15,8 +15,11 @@ use App\Mail\bath;
 use App\Mail\ComingToCentre;
 use App\Mail\feed;
 use App\Mail\received;
-
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Mail;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,13 +31,13 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
-Route::get('/profile', [App\Http\Controllers\HomeController::class, 'index'])->name('profile');
+Route::get('/profile', [HomeController::class, 'index'])->name('profile');
 
 Route::get('/bookings', [BookingController::class, 'index'])->middleware('auth');
 
@@ -90,6 +93,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
 });
 
+
+
+
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
 Route::get('/register/admin', [RegisterController::class,'showAdminRegisterForm']);
 Route::post('/login/admin', [LoginController::class,'adminLogin']);
@@ -109,5 +115,19 @@ Route::get('/received', [AdminController::class, 'received'])->name('received');
 Route::get('/coming_to_centre', [AdminController::class, 'comingToCentre'])->name('ComingToCentre');;
 
 
+//payment
+Route::get('/payment', [SubscriptionController::class, 'showPayment']);
+Route::post('/process-payment', [SubscriptionController::class, 'processPayment'])->name('process.payment');
 
 
+// Authentication
+Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
+Route::post('/login/admin', [LoginController::class, 'loginAdmin']);
+Route::get('/register/user', [RegisterController::class, 'showRegisterForm']);   
+Route::post('/register/user', [RegisterController::class, 'register'])->name('register');
+Route::get('/register/admin', [RegisterController::class, 'showAdminRegisterForm']);
+Route::post('/register/admin', [RegisterController::class, 'registerAdmin'])->name('registerAdmin');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login/user', [LoginController::class, 'loginUser']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
