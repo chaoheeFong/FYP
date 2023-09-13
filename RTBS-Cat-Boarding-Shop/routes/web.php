@@ -53,9 +53,13 @@ Route::put('/booking/{id}', [BookingController::class, 'update'])->name('booking
 Route::delete('/booking/{id}', [BookingController::class, 'destroy'])->name('booking.destroy');
 Route::get('/bookingConfirmation', [BookingController::class, 'confirmation'])->name('booking.confirmation');
 Route::post('/booking/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
-
+        
 //Subscription Section
 Route::get('/subscription', [SubscriptionController::class, 'index'])->middleware('auth');
+//payment
+Route::get('/payment', [SubscriptionController::class, 'showPayment']);
+Route::post('/process-payment', [SubscriptionController::class, 'processPayment'])->name('process.payment');
+
 
 //Feedback Section
 Route::get('/feedback', [FeedbackController::class, 'showForm'])->name('feedback.form');
@@ -95,29 +99,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
 
 
-
-Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
-Route::get('/register/admin', [RegisterController::class,'showAdminRegisterForm']);
-Route::post('/login/admin', [LoginController::class,'adminLogin']);
-Route::post('/register/admin', [RegisterController::class,'createAdmin']);
-
-
 //profile
 Route::get('/profile', [UserController::class, 'index'])->name('user')->middleware('auth');
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload-profile-picture');
-Route::get('/send',[MailController::class,'index']);
 
 
-Route::get('/mail', [AdminController::class, 'catStatusMail']);
+
+//send notification
 Route::get('/feed', [AdminController::class, 'feed'])->name('feed');
 Route::get('/bath', [AdminController::class, 'bath'])->name('bath');
 Route::get('/received', [AdminController::class, 'received'])->name('received');
 Route::get('/coming_to_centre', [AdminController::class, 'comingToCentre'])->name('ComingToCentre');;
 
 
-//payment
-Route::get('/payment', [SubscriptionController::class, 'showPayment']);
-Route::post('/process-payment', [SubscriptionController::class, 'processPayment'])->name('process.payment');
+
 
 
 // Authentication

@@ -47,8 +47,8 @@
 <body>
     <div class="notification">
         <img src="cat.jpg" alt="Cat Image" width="200">
-        <h1>Finish Feeding</h1>
-        <p>Your cat has finished eating.</p>
+        <h1>Complete feeding.</h1>
+        <p>Your cat's meal is over.</p>
         <a href="http://127.0.0.1:8000/booking" class="btn">Check now</a>
     </div>
 </body>

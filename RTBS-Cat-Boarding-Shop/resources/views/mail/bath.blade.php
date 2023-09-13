@@ -47,8 +47,8 @@
 <body>
     <div class="notification">
         <img src="cat.jpg" alt="Cat Image" width="200">
-        <h1>already bath</h1>
-        <p>already bath</p>
+        <h1>Your kitty was just washed</h1>
+        <p>Your cat looks and feels great after a wonderful wash!</p>
         <a href="http://127.0.0.1:8000/booking" class="btn">Check now</a>
     </div>
 </body>

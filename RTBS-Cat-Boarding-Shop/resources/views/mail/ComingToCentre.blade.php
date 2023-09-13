@@ -48,7 +48,7 @@
     <div class="notification">
         <img src="cat.jpg" alt="Cat Image" width="200">
         <h1>Coming to Centre</h1>
-        <p>Coming to Centre</p>
+        <p>Prepared for your pet to enter the center</p>
         <a href="http://127.0.0.1:8000/booking" class="btn">Check now</a>
     </div>
 </body>

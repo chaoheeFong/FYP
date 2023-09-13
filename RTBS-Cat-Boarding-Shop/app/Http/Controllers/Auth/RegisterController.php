@@ -85,11 +85,11 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'contact' => $request->contact,
-            'location' => $request->locaton,
+            'location' => $request->location,
             'role' => 'admin', // This is correct
         ]);
     
-        return redirect('/login/admin');
+        return redirect('/login');
     }
     
     
