@@ -56,6 +56,23 @@ class UserController extends Controller
     return redirect()->back()->with('success', 'Profile picture uploaded successfully.');
 }
 
+public function storePicture(Request $request)
+{
+    $request->validate([
+        'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
+
+    if ($request->hasFile('profile_picture')) {
+        $file = $request->file('profile_picture');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('profile_pictures', $fileName, 'public');
+        Auth::user()->update(['profile_picture' => $fileName]);
+    }
+
+    return redirect()->back()->with('success', 'Profile picture uploaded successfully.');
+}
+
+
 public function changeRole()
 {
     $user = auth()->user(); // Get the authenticated user

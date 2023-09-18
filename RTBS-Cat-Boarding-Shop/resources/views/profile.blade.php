@@ -33,7 +33,7 @@
               <h5 class="card-title">{{ Auth::user()->name }}</h5>
             </div>
             <div class="card-body">
-             <img src="{{ auth()->user()->profile_picture_url }}" alt="Profile Picture">
+             <img src="{{ asset('storage/profile_pictures/' . Auth::user()->profile_picture) }}" alt="Profile Picture">
 <form action="{{ route('upload-profile-picture') }}" method="post" enctype="multipart/form-data">
     @csrf
     <input type="file" name="profile_picture">
