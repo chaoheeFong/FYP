@@ -190,8 +190,111 @@ public function userManagement()
     public function editCatStatus($id)
     {
         $booking = Booking::findOrFail($id); // Find the booking by ID
+
+    $userLocation = Auth::user()->location;
+    $postcodes = Auth::user()->postcode;
+    $firstTwoDigits = substr($postcodes, 0, 2);
+
+    $locations = [
+        '01' => 'Perlis Branch',
+        '02' => 'Perlis Branch',
+        '05' => 'Kedah Branch',
+        '06' => 'Kedah Branch',
+        '07' => 'Kedah Branch',
+        '08' => 'Kedah Branch',
+        '09' => 'Kedah Branch',
+        '10' => 'Penang Branch',
+        '11' => 'Penang Branch',
+        '12' => 'Penang Branch',
+        '13' => 'Penang Branch',
+        '14' => 'Penang Branch',
+        '15' => 'Kelantan Branch',
+        '16' => 'Kelantan Branch',
+        '17' => 'Kelantan Branch',
+        '18' => 'Kelantan Branch',
+        '20' => 'Terengganu Branch',
+        '21' => 'Terengganu Branch',
+        '22' => 'Terengganu Branch',
+        '23' => 'Terengganu Branch',
+        '24' => 'Terengganu Branch',
+        '25' => 'Pahang Branch',
+        '26' => 'Pahang Branch',
+        '27' => 'Pahang Branch',
+        '28' => 'Pahang Branch',
+        '30' => 'Perak Branch',
+        '31' => 'Perak Branch',
+        '32' => 'Perak Branch',
+        '33' => 'Perak Branch',
+        '34' => 'Perak Branch',
+        '35' => 'Perak Branch',
+        '36' => 'Perak Branch',
+        '39' => 'Cameron Highlands Branch',
+        '40' => 'Selangor Branch',
+        '41' => 'Selangor Branch',
+        '42' => 'Selangor Branch',
+        '43' => 'Selangor Branch',
+        '44' => 'Selangor Branch',
+        '45' => 'Selangor Branch',
+        '46' => 'Selangor Branch',
+        '47' => 'Selangor Branch',
+        '48' => 'Selangor Branch',
+        '49' => 'Frasers Hill Branch',
+        '50' => 'KL Branch',
+        '51' => 'KL Branch',
+        '52' => 'KL Branch',
+        '53' => 'KL Branch',
+        '54' => 'KL Branch',
+        '55' => 'KL Branch',
+        '56' => 'KL Branch',
+        '57' => 'KL Branch',
+        '58' => 'KL Branch',
+        '59' => 'KL Branch',
+        '60' => 'KL Branch',
+        '62' => 'Putrajaya Branch',
+        '63' => 'Selangor Branch',
+        '64' => 'Selangor Branch',
+        '65' => 'Selangor Branch',
+        '66' => 'Selangor Branch',
+        '67' => 'Selangor Branch',
+        '68' => 'Selangor Branch',
+        '69' => 'Genting Highlands Branch',
+        '70' => 'Sembilan Branch',
+        '71' => 'Sembilan Branch',
+        '72' => 'Sembilan Branch',
+        '73' => 'Sembilan Branch',
+        '75' => 'Melaka Branch',
+        '76' => 'Melaka Branch',
+        '77' => 'Melaka Branch',
+        '78' => 'Melaka Branch',
+        '79' => 'Johor Branch',
+        '80' => 'Johor Branch',
+        '81' => 'Johor Branch',
+        '82' => 'Johor Branch',
+        '83' => 'Johor Branch',
+        '84' => 'Johor Branch',
+        '85' => 'Johor Branch',
+        '86' => 'Johor Branch',
+        '87' => 'Labuan Branch',
+        '88' => 'Sabah Branch',
+        '89' => 'Sabah Branch',
+        '90' => 'Sabah Branch',
+        '91' => 'Sabah Branch',
+        '93' => 'Sarawak Branch',
+        '94' => 'Sarawak Branch',
+        '95' => 'Sarawak Branch',
+        '96' => 'Sarawak Branch',
+        '97' => 'Sarawak Branch',
+        '98' => 'Sarawak Branch',
+    ];
+        $suggestedLocations = [];
+
+    foreach ($locations as $code => $location) {
+        if (strpos($code, $firstTwoDigits) !== false) {
+            $suggestedLocations[$code] = $location;
+        }
+    }
     
-        return view('admin.catStatusManagement.edit', compact('booking'));
+        return view('admin.catStatusManagement.edit', compact('booking','userLocation', 'suggestedLocations'));
     }
 
     public function updateCatStatus(Request $request, $id)
@@ -199,7 +302,7 @@ public function userManagement()
     $booking = Booking::findOrFail($id);
 
     $data = $request->validate([
-        'location' => 'required|in:Sungai Long,Jalan Ampang,Batu Kawan,Mahkota Cheras',
+        'location' => 'required',
         'service_type' => 'required',
         'number_of_cats' => 'required|integer',
         'breed' => 'required',

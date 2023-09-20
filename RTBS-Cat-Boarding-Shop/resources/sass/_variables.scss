@@ -11486,14 +11486,18 @@ section#contact form#contactForm :-ms-input-placeholder {
   position: relative;
   text-align: center;
   background-image: url('../assets/img/cat.jpg');
-  background-size: cover; /* Set the background size */
+  background-size: cover;
   background-position: center;
   color: #ffffff;
   padding: 450px;
 }
 
-.banner h1, .banner p {
-  color: inherit;
+.banner h1 {
+  font-size: 48px; /* Set the font size for the h1 element */
+}
+
+.banner p {
+  font-size: 24px; /* Set the font size for the p element */
 }
 
   
