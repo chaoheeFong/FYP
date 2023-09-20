@@ -18,17 +18,17 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/scss" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="sass/app.scss" rel="stylesheet" />
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
     </head>
     <body id="page-top">
         <!-- Masthead-->
-        <header class="masthead">
-            <div class="container" >
-                <div class="masthead-subheading">Welcome To Kitty Camp!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
-            </div>
-        </header>
+        <div class="banner" style="background-image: url('{{ asset('assets/img/cat.jpg') }}');">
+        <h1>Welcome To Kitty Camp!</h1>
+        <p>It's Nice To Meet You</p>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+</div>
+
+
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">

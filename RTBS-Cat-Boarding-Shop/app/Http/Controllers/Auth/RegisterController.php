@@ -65,6 +65,7 @@ class RegisterController extends Controller
 			'password' => Hash::make($request->password),
 			'contact' => $request->contact,
             'location' => $request->location,
+            'postcode' => $request->postcode,
 		]);
 
 		return redirect('/login');
@@ -77,6 +78,7 @@ class RegisterController extends Controller
             'password' => 'required|min:8|confirmed',
             'contact' => 'required|min:8',
             'location' => 'required|max:255',
+            'postcode' => 'required|max:255',
             'role' => 'admin', // This is incorrect
         ]);
     
@@ -86,6 +88,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
             'contact' => $request->contact,
             'location' => $request->location,
+            'postcode' => $request->postcode,
             'role' => 'admin', // This is correct
         ]);
     

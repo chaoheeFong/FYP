@@ -10948,7 +10948,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/img/header-bg.jpg");
+  background-image: url("");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -11480,6 +11480,20 @@ section#contact form#contactForm :-ms-input-placeholder {
         flex-direction: column;
         align-items: center;
     }
+}
+
+.banner {
+  position: relative;
+  text-align: center;
+  background-image: url('../assets/img/cat.jpg');
+  background-size: cover; /* Set the background size */
+  background-position: center;
+  color: #ffffff;
+  padding: 450px;
+}
+
+.banner h1, .banner p {
+  color: inherit;
 }
 
   

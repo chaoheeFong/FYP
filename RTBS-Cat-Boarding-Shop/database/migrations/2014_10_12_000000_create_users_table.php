@@ -17,6 +17,7 @@ public function up(): void
         $table->string('email')->unique();
         $table->string('contact')->nullable();
         $table->string('location');
+        $table->string('postcode', 5);
         $table->string('profile_picture')->nullable();
         $table->enum('role', ['subscriber', 'user', 'admin'])->default('user');
         $table->timestamp('email_verified_at')->nullable();
