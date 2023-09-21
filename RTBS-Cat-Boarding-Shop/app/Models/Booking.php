@@ -26,8 +26,11 @@ class Booking extends Model
         'status' => 'Coming to Centre',
     ];
 
-    public function user(): BelongsTo{
-        return $this->belongsTo(User::class);
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id'); // Assuming 'user_id' is the foreign key in the bookings table
     }
 
 }

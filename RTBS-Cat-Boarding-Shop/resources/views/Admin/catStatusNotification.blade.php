@@ -45,7 +45,7 @@
                             <a href="{{ route('admin.booking.editStatus', $booking->id) }}" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                            <a href="{{ route('admin.catStatusManagement.CatStatus') }}" class="btn btn-success">Send</a>
+                                <a href="{{ route('admin.catStatusManagement.sendStatus', ['booking' => $booking]) }}" class="btn btn-success">Send</a>
                             </td>
                         </tr>
                     @endforeach

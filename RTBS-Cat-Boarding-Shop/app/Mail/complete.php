@@ -8,8 +8,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-
-class bath extends Mailable
+use Illuminate\Mail\Mailables\Attachment;
+class complete extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -27,7 +27,7 @@ class bath extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Cat Spa Retreat: A Relaxing Bath Time Experience',
+            subject: 'Pampered Paws: Cat Boarding with Deluxe Bath Service',
         );
     }
 
@@ -37,7 +37,7 @@ class bath extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.bath',
+            view: 'mail.complete',
         );
     }
 
@@ -48,6 +48,9 @@ class bath extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromStorage('/assets/img')
+            ->as('/cat.jpg'),
+        ];
     }
 }

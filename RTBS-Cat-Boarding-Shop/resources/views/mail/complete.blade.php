@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Already Bath</title>
+<title>Completed the Booking</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,9 +46,9 @@
 </head>
 <body>
     <div class="notification">
-    <img src="{{ asset('assets/img/cat1.png') }}" alt="Cat Image" width="200">
-        <h1>Your kitty was just washed</h1>
-        <p>Your cat looks and feels great after a wonderful wash!</p>
+    <img src="../public/assets/img/cat1.png" alt="Cat Image" width="200">
+        <h1>Booking Completed</h1>
+        <p>Thank you for using our service. Your booking has been successfully completed.</p>
         <a href="http://127.0.0.1:8000/booking" class="btn">Check now</a>
     </div>
 </body>

@@ -14,6 +14,7 @@ use App\Mail\bath;
 use App\Mail\ComingToCentre;
 use App\Mail\feed;
 use App\Mail\received;
+use App\Mail\complete;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -158,33 +159,122 @@ public function userManagement()
         return redirect('/admin/catStatusNotification')->with('success', 'Coming to Centre action performed!');
     }
 
-    public function comingToCentre(){
-        Mail::to('chaohee00@gmail.com')
-        ->send(new ComingToCentre());
+    public function comingToCentre($bookingId){
+        // Retrieve the booking information
+        $booking = Booking::findOrFail($bookingId);
+
+        // Check if the booking exists
+    if (!$booking) {
+        return redirect('/admin/catStatusNotification')->with('error', 'Booking not found.');
+    }
+
+    // Update the status to 'done feeding'
+    $booking->status = 'Coming to Centre';
+    $booking->save();
+    
+        // Get the user associated with the booking
+        $user = $booking->user;
+    
+        // Send an email to the user
+        Mail::to($user->email)
+            ->send(new ComingToCentre());
+    
         return redirect('/admin/catStatusNotification')->with('success', 'Coming to Centre action performed!');
     }
 
-    public function feed(){
-        Mail::to('chaohee00@gmail.com')
+    public function feed($bookingId){
+        $booking = Booking::find($bookingId);
+
+        // Check if the booking exists
+    if (!$booking) {
+        return redirect('/admin/catStatusNotification')->with('error', 'Booking not found.');
+    }
+
+    // Update the status to 'done feeding'
+    $booking->status = 'done feeding';
+    $booking->save();
+
+        // Get the user associated with the booking
+        $user = $booking->user;
+
+        Mail::to($user->email)
         ->send(new feed());
+
         return redirect('/admin/catStatusNotification')->with('success', 'Fed action performed!');
     
     }
 
-    public function bath(){
-        Mail::to('chaohee00@gmail.com')
+    public function bath($bookingId){
+        $booking = Booking::find($bookingId);
+
+        // Check if the booking exists
+    if (!$booking) {
+        return redirect('/admin/catStatusNotification')->with('error', 'Booking not found.');
+    }
+
+    // Update the status to 'done feeding'
+    $booking->status = 'done bath';
+    $booking->save();
+
+        // Get the user associated with the booking
+        $user = $booking->user;
+    
+        Mail::to($user->email)
         ->send(new bath());
+
         return redirect('/admin/catStatusNotification')->with('success', 'Bath action performed!');
     }
 
-        public function received(){
-        Mail::to('chaohee00@gmail.com')
+    public function received($bookingId){
+
+        $booking = Booking::find($bookingId);
+
+        // Check if the booking exists
+    if (!$booking) {
+        return redirect('/admin/catStatusNotification')->with('error', 'Booking not found.');
+    }
+
+    // Update the status to 'done feeding'
+    $booking->status = 'received';
+    $booking->save();
+
+        $user = $booking->user;
+
+        Mail::to($user->email)
         ->send(new received());
+
         return redirect('/admin/catStatusNotification')->with('success', 'Received action performed!');
     }
 
+    public function complete($bookingId){
+
+        $booking = Booking::find($bookingId);
+
+        // Check if the booking exists
+    if (!$booking) {
+        return redirect('/admin/catStatusNotification')->with('error', 'Booking not found.');
+    }
+
+    // Update the status to 'done feeding'
+    $booking->status = 'completed';
+    $booking->save();
+
+        $user = $booking->user;
+
+        Mail::to($user->email)
+        ->send(new complete());
+
+        return redirect('/admin/catStatusNotification')->with('success', 'complete action performed!');
+    }
+
     public function catStatus(){
+
         return view('admin.catStatusManagement.sendStatus');
+    }
+
+    public function sendStatus($bookingId) {
+        $booking = Booking::findOrFail($bookingId);
+        return view('admin.catStatusManagement.sendStatus', compact('booking'));
     }
 
     public function editCatStatus($id)

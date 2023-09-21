@@ -15,6 +15,7 @@ use App\Mail\bath;
 use App\Mail\ComingToCentre;
 use App\Mail\feed;
 use App\Mail\received;
+use App\Mail\complete;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Mail;
@@ -94,6 +95,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::put('/booking/{id}', [AdminController::class, 'updateCatStatus'])->name('admin.catStatusManagement.updateCatStatus');
     Route::get('/sendCatStatus',[AdminController::class, 'CatStatus'])->name('admin.catStatusManagement.CatStatus');
     Route::post('/sendCatStatus/{status}',[AdminController::class, 'CatStatus'])->name('admin.catStatusManagement.sendCatStatus'); 
+    Route::get('/catStatusManagement/sendStatus/{booking}',[AdminController::class, 'sendStatus'])->name('admin.catStatusManagement.sendStatus');
 
 });
 
@@ -106,10 +108,12 @@ Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePic
 
 
 //send notification
-Route::get('/feed', [AdminController::class, 'feed'])->name('feed');
-Route::get('/bath', [AdminController::class, 'bath'])->name('bath');
-Route::get('/received', [AdminController::class, 'received'])->name('received');
-Route::get('/coming_to_centre', [AdminController::class, 'comingToCentre'])->name('ComingToCentre');;
+Route::get('/admin/feed/{bookingId}', [AdminController::class, 'feed'])->name('feed');
+Route::get('/admin/sendCatStatus/{bookingId}', [AdminController::class, 'bath'])->name('bath');
+Route::get('/admin/received/{bookingId}', [AdminController::class, 'received'])->name('received');
+Route::get('/admin/comingToCentre/{bookingId}', [AdminController::class, 'comingToCentre'])->name('comingToCentre');
+Route::get('/admin/complete/{bookingId}', [AdminController::class, 'complete'])->name('complete');
+
 
 
 
